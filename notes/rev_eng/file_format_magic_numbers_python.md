@@ -1,7 +1,7 @@
 ---
-tags: ["Reverse Engineering"]
+tags: ["Reverse Engineering", "File Format", "Magic Number"]
 title: "File Format: Magic Numbers"
-description: 
+description: Reverse engineering by checking the python script
 reference: https://pwn.college/intro-to-cybersecurity/reverse-engineering/
 ---
 
