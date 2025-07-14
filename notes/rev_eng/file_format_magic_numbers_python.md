@@ -24,3 +24,59 @@ Leave objdump behind. You might have used objdump previously to look at assembly
 Retrace your successful solution. If you solve this challenge without using both a graphical reversing tool and a debugger (gdb), go back and re-verify your solution using the tools that you did not use. This will be good practice for understanding how to use these tools in later levels, and you should apply it in any challenge that you solve without relying on both tools.
 
 # Solution
+
+## 1. get the printable string of `cimg`
+
+- found `cimg` actually is a python script
+- the magic number is b"[M6E"
+
+```
+hacker@reverse-engineering~file-formats-magic-numbers-python:/challenge$ strings cimg 
+#!/opt/pwn.college/python
+
+import os
+import sys
+from collections import namedtuple
+
+Pixel = namedtuple("Pixel", ["ascii"])
+
+
+def main():
+    if len(sys.argv) >= 2:
+        path = sys.argv[1]
+        assert path.endswith(".cimg"), "ERROR: file has incorrect extension"
+        file = open(path, "rb")
+    else:
+        file = sys.stdin.buffer
+
+    header = file.read1(4)
+    assert len(header) == 4, "ERROR: Failed to read header!"
+
+    assert header[:4] == b"[M6E", "ERROR: Invalid magic number!"
+
+    with open("/flag", "r") as f:
+        flag = f.read()
+        print(flag)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except AssertionError as e:
+        print(e, file=sys.stderr)
+        sys.exit(-1)
+```
+
+## 2. create a file with the magic number
+
+```python
+with open("flag.cimg", "wb") as f:
+    f.write(b"[M6E")
+```
+
+## 3. run the cimg binary with the created file'
+
+```
+hacker@reverse-engineering~file-formats-magic-numbers-python:/challenge$ ./cimg ~/flag.cimg
+pwn.college{8Z6iFdyymDZhR2FN7t9yYvLBtpr.0VNwUjNxwCM0YjMyEzW}
+```
