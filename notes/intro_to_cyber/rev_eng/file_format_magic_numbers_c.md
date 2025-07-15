@@ -1,7 +1,7 @@
 ---
 tags: ["Reverse Engineering", "File Format", "Magic Number"]
 title: "File Format: Magic Numbers in C"
-description: Reverse engineering by checking the python script
+description: Reverse engineering by checking the c program
 reference: https://pwn.college/intro-to-cybersecurity/reverse-engineering/
 ---
 

@@ -1,7 +1,7 @@
 ---
 tags: ["Reverse Engineering", "File Format", "Magic Number"]
 title: "File Format: Magic Numbers in x86"
-description: Reverse engineering by checking the python script
+description: How string comparison is used to check the file format magic number in x86 assembly.
 reference: https://pwn.college/intro-to-cybersecurity/reverse-engineering/
 ---
 
