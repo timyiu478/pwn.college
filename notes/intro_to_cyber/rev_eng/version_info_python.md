@@ -77,3 +77,38 @@ with open("my-file", "wb") as out_file:
 
 If you are curious, you can look at other format specifiers in struct's documentation.
 
+# Solution
+
+## 1. read the python script
+
+Related code snippet:
+
+```python
+    header = file.read1(6)
+    assert len(header) == 6, "ERROR: Failed to read header!"
+
+    assert header[:4] == b"<0%r", "ERROR: Invalid magic number!"
+
+    assert int.from_bytes(header[4:6], "little") == 125, "ERROR: Invalid version!"
+```
+
+## 2. create a file with the magic number and version
+
+```python
+import struct
+
+magic_num = b"<0%r"
+version = 125
+bin_version = struct.pack('<I', version)
+
+with open("flag.cimg", "wb") as f:
+    f.write(magic_num)
+    f.write(bin_version)
+```
+
+## 3. run cimg
+
+```
+hacker@reverse-engineering~version-information-python:/challenge$ ./cimg ~/flag.cimg 
+pwn.college{gOhU6vftpo3mJktcmHHe-2t6q76.0VOwUjNxwCM0YjMyEzW}
+```
