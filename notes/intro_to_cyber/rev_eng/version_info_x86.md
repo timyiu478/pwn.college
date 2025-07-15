@@ -89,7 +89,7 @@ Breakpoint 6, 0x0000000000401534 in read_exact ()
 $18 = 12
 ```
 
-## 2. create a file with the magic number and version
+## 2. create a file with the magic number, version, and padding
 
 ```python
 import struct
