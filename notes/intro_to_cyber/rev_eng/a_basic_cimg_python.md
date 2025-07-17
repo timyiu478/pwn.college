@@ -13,6 +13,10 @@ It's time to upgrade to a new version of the cIMG, getting much closer to usurpi
 
 ## 1. read the python code
 
+- data constains list of pixels
+- each pixel contains 3 bytes to represent rgb and 1 byte ascii
+- pixel is fixed: asu maroon
+
 ```python
 #!/opt/pwn.college/python
 
@@ -79,4 +83,60 @@ if __name__ == "__main__":
     except AssertionError as e:
         print(e, file=sys.stderr)
         sys.exit(-1)
+```
+
+## 2. create proper .cimg file
+
+```python
+     1	import struct
+     2	
+     3	with open("flag.cimg", "wb") as f:
+     4	    magic = b"cIMG"
+     5	    version = 2
+     6	    version = version.to_bytes(4, "little")
+     7	    width = 20
+     8	    width = width.to_bytes(4, "little")
+     9	    height = 22
+    10	    height = height.to_bytes(4, "little")
+    11	
+    12	
+    13	    f.write(magic)
+    14	    f.write(version)
+    15	    f.write(width)
+    16	    f.write(height)
+    17	
+    18	    for i in range(20*22-440):
+    19	       f.write(b"\x20\x20\x20\x20")
+    20	    for i in range(440):
+    21	       f.write(b"\x8c\x1d\x40\x30")
+```
+
+## 3. run cimg
+
+```
+hacker@reverse-engineering~a-basic-cimg-python:/challenge$ ./cimg ~/flag.cimg
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+
+pwn.college{00ce82qe4ogFlC-dGO-rs6O_HrW.01NxUjNxwCM0YjMyEzW}
 ```
