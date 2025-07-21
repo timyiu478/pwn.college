@@ -1,5 +1,5 @@
 ---
-tags: ["Web Security"]
+tags: ["Web Security", "Web Server", "File System"]
 title: "Path Traversal"
 description: Get un-authorized files from web server using Path Traversal
 reference: https://pwn.college/intro-to-cybersecurity/web-security/
