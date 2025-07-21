@@ -9,6 +9,10 @@ reference: https://pwn.college/intro-to-cybersecurity/intercepting-communication
 
 So, the One Time Pad is proven to be secure... but only in the Confidential sense! It actually does not guarantee anything about Integrity. This challenge asks you: what if you could tamper with the message in transit? Think about how XOR works, and see if you can get the flag!
 
+# Takeaway
+
+Use authenticated encryption.
+
 # Solution
 
 1. read the python scripts
