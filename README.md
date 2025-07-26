@@ -12,4 +12,4 @@ This repository contains some of my notes to the pwn.college challenges.
 | 2  | ARP Spoofing: Man In the Middle Attack         | [View](notes/intro_to_cyber/net_comm/mitm.md) | `ARP Spoofing`, `TCP`, `Man-in-the-middle`        |
 | 3  | SQL Injection: Guess password even if the actual data is not shown         | [View](notes/intro_to_cyber/web_sec/sqli.md#5) | `SQL`, `Authentication`        |
 | 4  | Transport Layer Security: Hand Shake        | [View](notes/intro_to_cyber/crypto/tls.md#2) | `TLS`, `Diffie-Hellman`, `RSA`, `AES`, `SHA`        |
-| 5  | Access Control        | [View](notes/intro_to_cyber/access_control/README.md) | `POSIX Access Control`, `Mandatory Access Control`, `Bell-LaPadula Model`      |
+| 5  | Provable Access Control: Bell-LaPadula Model        | [View](notes/intro_to_cyber/access_control/README.md) | `POSIX Access Control`, `Mandatory Access Control`, `Bell-LaPadula Model`      |
