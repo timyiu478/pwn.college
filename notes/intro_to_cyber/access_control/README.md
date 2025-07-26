@@ -302,17 +302,23 @@ Correct!
 
 > Automate answering 20 Mandatory Access Control questions with categories in one second
 
+run [bell.py](src/bell.py)
+
 ---
 
 # L18
 
 > Automate answering 64 Mandatory Access Control questions with categories in one second
 
+run [bell.py](src/bell.py)
+
 ---
 
 # L19
 
 > Automate Answering 128 Mandatory Access Control questions with random levels and categories in one second
+
+run [bell.py](src/bell.py)
 
 ---
 
