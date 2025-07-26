@@ -11,4 +11,4 @@ This repository contains some of my notes to the pwn.college challenges.
 | 1  | Rev Eng: Version Information in x86         | [View](notes/intro_to_cyber/rev_eng/version_info_x86.md) | `Reverse Engineering`, `x86`, `gdb`        |
 | 2  | ARP Spoofing: Man In the Middle Attack         | [View](notes/intro_to_cyber/net_comm/mitm.md) | `ARP Spoofing`, `TCP`, `Man-in-the-middle`        |
 | 3  | SQL Injection: Guess password even if the actual data is not shown         | [View](notes/intro_to_cyber/web_sec/sqli.md#5) | `SQL`, `Authentication`        |
-| 4  | Transport Layer Security        | [View](notes/crypto/tls.md) | `TLS`, `Diffie-Hellman`, `RSA`, `Public Key Certificate`        |
+| 4  | Transport Layer Security        | [View](notes/intro_to_cyber/crypto/tls.md) | `TLS`, `Diffie-Hellman`, `RSA`, `Public Key Certificate`        |
