@@ -196,11 +196,47 @@ same as L11
 
 > One Mandatory Access Control question without categories
 
+```
+In this challenge, your goal is to answer 1 questions correctly in 120 seconds about the following Mandatory Access Control (MAC) system:
+4 Levels (first is highest aka more sensitive):
+TS
+S
+C
+UC
+Q 1. Can a Subject with level C read an Object with level C?
+yes
+Correct!
+```
+
 ---
 
 # L14
 
 > Five Mandatory Access Control questions without categories
+
+```
+In this challenge, your goal is to answer 5 questions correctly in 120 seconds about the following Mandatory Access Control (MAC) system:
+4 Levels (first is highest aka more sensitive):
+TS
+S
+C
+UC
+Q 1. Can a Subject with level UC write an Object with level UC?
+yes
+Correct!
+Q 2. Can a Subject with level C read an Object with level UC?
+yes
+Correct!
+Q 3. Can a Subject with level S write an Object with level S?
+yes
+Correct!
+Q 4. Can a Subject with level TS read an Object with level UC?
+yes
+Correct!
+Q 5. Can a Subject with level UC read an Object with level UC?
+yes
+Correct!
+```
 
 ---
 
@@ -208,11 +244,57 @@ same as L11
 
 > One Mandatory Access Control question with categories
 
+```
+In this challenge, your goal is to answer 1 questions correctly in 120 seconds about the following Mandatory Access Control (MAC) system:
+4 Levels (first is highest aka more sensitive):
+TS
+S
+C
+UC
+4 Categories:
+NATO
+ACE
+UFO
+NUC
+Q 1. Can a Subject with level S and categories {} write an Object with level S and categories {ACE}?
+yes
+Correct!
+```
+
 ---
 
 # L16
 
 > Five Mandatory Access Control questions with categories
+
+```
+In this challenge, your goal is to answer 5 questions correctly in 120 seconds about the following Mandatory Access Control (MAC) system:
+4 Levels (first is highest aka more sensitive):
+TS
+S
+C
+UC
+4 Categories:
+UFO
+NUC
+ACE
+NATO
+Q 1. Can a Subject with level C and categories {UFO, NUC} write an Object with level C and categories {UFO}?
+no
+Correct!
+Q 2. Can a Subject with level UC and categories {ACE} write an Object with level TS and categories {UFO, NUC, ACE}?
+yes
+Correct!
+Q 3. Can a Subject with level S and categories {UFO, NUC} read an Object with level UC and categories {UFO, NATO}?
+no
+Correct!
+Q 4. Can a Subject with level C and categories {UFO, NUC} write an Object with level TS and categories {ACE}?
+no
+Correct!
+Q 5. Can a Subject with level UC and categories {} read an Object with level UC and categories {NUC}?
+no
+Correct!
+```
 
 ---
 
@@ -231,3 +313,20 @@ same as L11
 # L19
 
 > Automate Answering 128 Mandatory Access Control questions with random levels and categories in one second
+
+---
+
+# Notes
+
+- Types of Access Control
+    - Content Dependent: Content -> Data e.g. the people who report to you
+    - Context Dependent: Emergency vs Normal, Location
+    - Discretionary: the owner of the object controls who can access the object e.g. POSIX
+    - Mandatory: the system control the access to the object e.g. policy in shared file server
+        - can prove no information leak because of access control
+        - when to use? top secret, national secret
+        - Bell-LaPadula Model: the security level (L, C) dominates (L', C') iff L' <= L and C' is subset of C
+            - S can read O iff S dom O
+            - S can write O iff O dom S
+    - Originator: originator of the object (data creator) control the access
+    - Role Based
