@@ -156,5 +156,3 @@ NOTE: Keep in mind that, unlike the previous levels, this level takes data in ba
 
 ## Solution
 
-
-
